@@ -1,7 +1,6 @@
 package com.sq018.crudservlet.servlet;
 
 import com.sq018.crudservlet.dao.UserDAO;
-import com.sq018.crudservlet.model.User;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -10,18 +9,16 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.util.List;
 
-@WebServlet("/UserServlet")
-public class UserServlet extends HttpServlet {
-
+@WebServlet("/DeleteServlet")
+public class DeleteServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher =  request.getRequestDispatcher("dashboard.jsp");
+        String sid = request.getParameter("id");
+        int id = Integer.parseInt(sid);
 
-        List<User> users =  UserDAO.getAllUsers();
+        UserDAO.deleteUser(id);
 
-        request.setAttribute("users", users);
-        requestDispatcher.forward(request, response);
+        response.sendRedirect("UserServlet");
     }
 }

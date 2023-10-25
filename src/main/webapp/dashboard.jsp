@@ -5,10 +5,9 @@
   Time: 11:23
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
-<html>
 <head>
     <title>Users Dashboard</title>
 </head>
@@ -38,11 +37,14 @@
       <td>${user.password}</td>
       <td>${user.email}</td>
       <td>${user.country}</td>
-      <td>Edit</td>
-      <td>Delete</td>
+      <td><a href="EditServlet?id=${user.id}">Edit</a></td>
+      <td><a href="DeleteServlet?id=${user.id}">Delete</a></td>
     </tr>
   </c:forEach>
   </tbody>
 </table>
+<br/>
+<td><a href="CreateServlet">Add New User</a></td>
+
 </body>
 </html>
